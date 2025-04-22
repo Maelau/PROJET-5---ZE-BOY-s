@@ -1,0 +1,79 @@
+# Application de facturation pour indépendants
+
+## Contexte métier
+
+Un indépendant (freelance) souhaite une solution simple pour gérer ses clients, créer des devis et des factures, les télécharger en PDF, et suivre ses paiements. Il ne veut pas dépendre d’un outil payant ou trop complexe, et souhaite une application web qu’il peut héberger lui-même. L’objectif est de concevoir une application claire, stable et facile à utiliser.
+
+Cette application Symfony doit lui permettre de gérer ses produits, clients, et documents commerciaux sans effort technique.
+
+## Objectif pédagogique
+
+- Travailler sur des modèles commerciaux (clients, produits, devis/factures)
+- Générer des documents PDF dynamiques
+- Appliquer la logique métier d’un devis ou d’une facture
+- Implémenter un mini-dashboard de suivi
+
+## MVP – Minimum Viable Product (50% du projet)
+
+### Objectif : créer un devis/facture pour un client avec PDF téléchargeable
+
+### Usecases fonctionnels (utilisateurs)
+
+1. Freelance (utilisateur connecté) peut :
+   - Créer des clients (nom, entreprise, email, téléphone, adresse)
+   - Ajouter des produits/services (nom, description, prix unitaire, TVA)
+   - Créer un devis/facture à partir d’un formulaire (choix client + produits)
+   - Générer un PDF avec les infos saisies
+   - Voir la liste des devis/factures existants
+
+### Usecases techniques (Symfony)
+
+- Authentification simple pour 1 utilisateur (ROLE_USER)
+- Entités nécessaires :
+  - `Client`
+  - `Produit`
+  - `Facture`
+  - `LigneFacture` (produit + quantité + prix + TVA)
+- Génération PDF via `DompdfBundle` ou `Mpdf`
+- CRUD pour chaque entité
+- Formulaire de facture avec lignes dynamiques (CollectionType ou Javascript)
+
+## Deuxième phase – Version Complète (reste du projet)
+
+### Objectif : gérer les statuts, les paiements, les relances, et les exports
+
+### Usecases fonctionnels (compléments)
+
+1. Freelance peut :
+   - Marquer une facture comme payée ou en attente
+   - Filtrer les factures par client, statut ou date
+   - Dupliquer un devis/facture existant
+   - Ajouter un champ "notes" sur le document
+   - Ajouter sa propre identité (nom, logo, coordonnées) dans le PDF
+   - Voir un résumé de chiffre d’affaires (total facturé, payé, impayé)
+
+### Usecases techniques (compléments)
+
+- Ajout d’un champ `statut` sur `Facture`
+- Calcul des totaux (HT, TVA, TTC)
+- Dashboard Twig avec résumé des montants
+- Pagination/filtrage sur les listes
+- Export CSV (optionnel)
+- Upload du logo utilisateur (optionnel)
+
+## Technologies / Bundles utiles
+
+- Symfony 6+
+- Doctrine ORM
+- Twig
+- DompdfBundle ou mpdf
+- MakerBundle, FormBundle
+- VichUploaderBundle (pour logo)
+- KnpPaginatorBundle (facultatif)
+
+## Conseils
+
+- Bien modéliser les entités dès le début (relations facture/produits)
+- Tester rapidement la génération de PDF avant d’aller trop loin
+- Utiliser des fixtures pour simuler des clients et produits
+- Permettre de rééditer une facture avant validation
