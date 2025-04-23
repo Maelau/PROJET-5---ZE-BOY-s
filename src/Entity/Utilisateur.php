@@ -13,21 +13,20 @@ class Utilisateur
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: self::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?self $nom = null;
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNom(): ?self
+    public function getNom(): ?string
     {
         return $this->nom;
     }
 
-    public function setNom(?self $nom): static
+    public function setNom(?string $nom): static
     {
         $this->nom = $nom;
 
