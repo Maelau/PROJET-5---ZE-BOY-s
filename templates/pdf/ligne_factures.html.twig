@@ -1,0 +1,15 @@
+<tbody>
+    {% for ligne in ligneFactures %}
+        <tr>
+            <td>{{ ligne.produit.nom }}</td>
+            <td>{{ ligne.quantite }}</td>
+            <td>{{ ligne.prixht|number_format(2, ',', ' ') }} €</td>
+            <td>{{ ligne.tva }} %</td>
+            <td>{{ ligne.description }}</td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="5" style="text-align: center;">Aucune ligne de facture trouvée.</td>
+        </tr>
+    {% endfor %}
+</tbody>

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'accueil{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>BIENVENUE SUR ZEEFACT 🧾</h1>
+        <p>Ceci est la page d'accueil personnalisée.</p>
+
+        <ul>
+            <li><a href="{{ path('app_client_index') }}">List Clients</a></li>
+            <li><a href="{{ path('app_facture_index') }}">List Factures</a></li>
+            <li><a href="{{ path('app_lignefacture_index') }}">Ajout Nouvelle Facture</a></li>
+        </ul>
+    </div>
+{% endblock %}

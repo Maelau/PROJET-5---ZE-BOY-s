@@ -1,0 +1,19 @@
+{# templates/ligne_facture/edit.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la ligne de facture{% endblock %}
+
+{% block body %}
+    <h1>Modifier la ligne de facture</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.produit) }}
+        {{ form_row(form.quantite) }}
+        {{ form_row(form.prixht) }}
+        {{ form_row(form.tva) }}
+        {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_lignefacture_index') }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}

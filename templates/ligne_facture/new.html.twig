@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une nouvelle facture{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une nouvelle facture</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.client) }}
+    </br>
+        {{ form_row(form.produit) }}
+    </br>
+        {{ form_row(form.quantite) }}
+    </br>
+        {{ form_row(form.prixht) }}
+    </br>
+        {{ form_row(form.tva) }}
+    </br>
+        {{ form_row(form.description) }}
+    </br>
+        <button class="btn btn-primary">Enregistrer</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_lignefacture_index') }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}
+

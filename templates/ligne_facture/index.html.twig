@@ -1,0 +1,50 @@
+{# templates/ligne_facture/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une nouvelle facture{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une nouvelle facture</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th>Prix HT</th>
+                <th>TVA</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ligne in lignefactures %}
+                <tr>
+                    <td>{{ ligne.id }}</td>
+                    <td>{{ ligne.produit.nom }}</td>
+                    <td>{{ ligne.quantite }}</td>
+                    <td>{{ ligne.prixht }}</td>
+                    <td>{{ ligne.tva }}%</td>
+                    <td>{{ ligne.getTotal() }}</td>
+                    <td>
+                        <a href="{{ path('app_lignefacture_edit', {'id': ligne.id}) }}">Modifier</a>
+                        <form action="{{ path('app_lignefacture_delete', {'id': ligne.id}) }}" method="post" style="display:inline;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ ligne.id) }}">
+                            <button type="submit">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_lignefacture_pdf') }}" class="btn btn-outline-primary mb-3">
+        📄 Télécharger la liste en PDF
+    </a>
+    
+    
+
+    <a href="{{ path('app_lignefacture_new') }}" class="btn btn-primary">Ajouter une nouvelle facture</a>
+{% endblock %}
